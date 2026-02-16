@@ -61,7 +61,7 @@ function useCountUp(target: number, duration: number, trigger: number) {
 
 export default function RalCalculator() {
   const [ralInput, setRalInput] = useState("");
-  const [mensilita, setMensilita] = useState<Mensilita>(13);
+  const [mensilita, setMensilita] = useState<Mensilita>(12);
   const [result, setResult] = useState<CalcolaResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [animKey, setAnimKey] = useState(0);

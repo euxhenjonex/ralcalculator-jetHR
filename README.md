@@ -48,7 +48,7 @@ Questo calcolatore e stato sviluppato come step del processo di selezione per la
 
 ## Confronto con altri calcolatori
 
-Testato con RAL 30.000 €, tempo indeterminato, 13 mensilita, Milano:
+Testato con RAL 30.000 €, tempo indeterminato, 13 mensilita, Milano, nessuna detrazione o agevolazione, nessun benefit aziendale/welfare:
 
 | Calcolatore | Netto mensile | Delta |
 |-------------|---------------|-------|
