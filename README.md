@@ -1,36 +1,123 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Calcolatore RAL → Netto | Jet HR
 
-## Getting Started
+**Prototipo realizzato come progetto per il processo di selezione alla posizione di AI Builder presso [Jet HR](https://www.jethr.com).**
 
-First, run the development server:
+> Calcola lo stipendio netto annuale e mensile partendo dalla RAL, con breakdown fiscale dettagliato aggiornato all'anno fiscale 2026.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Perche questo progetto
+
+Questo calcolatore e stato sviluppato come step del processo di selezione per la posizione di **AI Builder** presso Jet HR. L'obiettivo era dimostrare la capacita di:
+
+- Costruire un prodotto funzionale e visivamente curato in tempi rapidi
+- Replicare fedelmente il design system di un brand esistente (navbar, colori, tipografia)
+- Implementare logica di calcolo fiscale accurata, verificata contro il calcolatore ufficiale Jet HR
+- Utilizzare strumenti AI (Claude Code) come acceleratore nello sviluppo
+
+---
+
+## Funzionalita
+
+- **Calcolo netto da RAL** con breakdown completo di ogni voce fiscale
+- **IRPEF 2026** con i nuovi scaglioni (23% / **33%** / 43% — secondo scaglione ridotto dal 35%)
+- **Selettore mensilita** (12, 13, 14) con ricalcolo del netto mensile
+- **Aliquote dinamiche** nelle label — mostra lo scaglione effettivo applicato al reddito
+- **Barre proporzionali** colorate per ogni voce (rosso trattenute, verde detrazioni, giallo netto)
+- **Animazioni** — count-up numerico, ingresso a cascata del breakdown, spinner di caricamento
+- **Design system Jet HR** — navbar scura, accenti gialli `#F5E027`, layout corporate
+- **Responsive** — 2 colonne su desktop, stack verticale su mobile
+
+---
+
+## Parametri fiscali 2026
+
+| Voce | Aliquota / Valore |
+|------|-------------------|
+| Contributi INPS dipendente | 9,19% |
+| IRPEF — 1° scaglione (fino a 28.000) | 23% |
+| IRPEF — 2° scaglione (28.001–50.000) | **33%** *(ridotto dal 35%)* |
+| IRPEF — 3° scaglione (oltre 50.000) | 43% |
+| Detrazioni lavoro dipendente | art. 13 TUIR |
+| Ulteriore detrazione (20k–40k) | 1.000 € (L. 207/2024) |
+| Bonus redditi bassi (fino a 20k) | 4,8%–7,1% (L. 207/2024) |
+| Addizionale regionale Lombardia | 1,23%–1,73% (progressiva) |
+| Addizionale comunale Milano | 0,80% (esenzione sotto 23.000 €) |
+
+---
+
+## Confronto con altri calcolatori
+
+Testato con RAL 30.000 €, tempo indeterminato, 13 mensilita, Milano:
+
+| Calcolatore | Netto mensile | Delta |
+|-------------|---------------|-------|
+| **Questo progetto** | **1.797 €** | — |
+| Jet HR (jethr.com) | 1.800 € | +3 € |
+| Coverflex | ~1.855 € | +58 € * |
+
+\* Coverflex non applica l'ulteriore detrazione L. 207/2024, risultando in un netto mensile piu alto per arrotondamento diverso delle voci.
+
+---
+
+## Tech Stack
+
+| Tecnologia | Versione |
+|------------|----------|
+| Next.js | 16 (App Router) |
+| React | 19 |
+| TypeScript | 5 (strict mode) |
+| Tailwind CSS | v4 |
+| Font | Geist Sans |
+
+---
+
+## Struttura del progetto
+
+```
+app/
+  globals.css            # Design system Jet HR (CSS custom properties + animazioni)
+  layout.tsx             # Root layout, metadata, favicon Jet HR
+  page.tsx               # Navbar con menu, hero section, footer
+
+components/
+  RalCalculator.tsx      # Calcolatore principale (input, risultati, animazioni)
+  JetHRLogo.tsx          # Logo SVG Jet HR con props colore/dimensione
+
+lib/
+  calcola.ts             # Motore di calcolo fiscale puro (zero dipendenze)
+
+public/
+  favicon.png            # Favicon Jet HR
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Quick Start
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
+Apri [localhost:3000](http://localhost:3000) nel browser.
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Build di produzione
+npm run build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Lint
+npm run lint
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Il progetto e ottimizzato per il deploy su **Vercel**. Basta collegare la repository e il deploy e automatico.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/euxhenjonex/ralcalculator-jetHR)
+
+---
+
+*Sviluppato con Next.js e Claude Code*
