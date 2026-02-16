@@ -54,9 +54,7 @@ Testato con RAL 30.000 €, tempo indeterminato, 13 mensilita, Milano:
 |-------------|---------------|-------|
 | **Questo progetto** | **1.797 €** | — |
 | Jet HR (jethr.com) | 1.800 € | +3 € |
-| Coverflex | ~1.855 € | +58 € * |
-
-\* Coverflex non applica l'ulteriore detrazione L. 207/2024, risultando in un netto mensile piu alto per arrotondamento diverso delle voci.
+| Stipendee (stipendee.it) | 1.797 € | 0 € |
 
 ---
 
